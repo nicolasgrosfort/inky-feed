@@ -15,7 +15,7 @@ An e-ink photo frame powered by a family drop box. Upload a photo from anywhere,
 - [Upload a new image](./docs/upload-new-image.md)
 - [Setup Server](./docs/setup-server.md)
 - [Setup Cron](./docs/setup-cron.md)
-- 
+
 ## External link
 
 - [Pimoroni tutorial](https://learn.pimoroni.com/article/getting-started-with-inky-impression)
