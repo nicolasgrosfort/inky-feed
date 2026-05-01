@@ -19,3 +19,14 @@ cd ~/Pimoroni/inky/examples/spectra6
 ```bash
 bash /home/pi-inky-feed/refresh-inky.sh
 ```
+
+## Additional Wifi
+
+```bash
+sudo nmcli connection add \
+  type wifi \
+  ssid "NomDuWifi" \
+  wifi-sec.key-mgmt wpa-psk \
+  wifi-sec.psk "MotDePasse" \
+  connection.autoconnect yes
+```
