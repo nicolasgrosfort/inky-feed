@@ -1,0 +1,37 @@
+name: Deploy Inky Feed
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-inky-feed
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: code
+
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v5
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: List output files
+        run: find dist/ -print
+
+      - name: Copy files to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          server-dir: /

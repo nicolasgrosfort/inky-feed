@@ -3,8 +3,7 @@
 ## Install dependancies
 
 ```bash
-composer require guzzlehttp/guzzle
-composer require vlucas/phpdotenv
+composer install
 ```
 
 ## Setup .env
