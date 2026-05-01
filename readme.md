@@ -1,6 +1,10 @@
 # Inky Feed
 
-A new photo appears on an e-ink screen every hour.
+They don't need a smartphone to see your photos.
+
+## About
+
+An e-ink photo frame powered by a family drop box. Upload a photo from anywhere, and it shows up on their screen within the hour. No social media, no notifications, no noise.
 
 ![Cover](./assets/cover.jpeg)
 
