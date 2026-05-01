@@ -21,11 +21,3 @@ ssh pi-inky-feed@pi-inky-feed.local 'chmod +x /home/pi-inky-feed/refresh-inky.sh
 ```bash
 ssh pi-inky-feed@pi-inky-feed.local 'bash /home/pi-inky-feed/refresh-inky.sh'
 ```
-
-## Create/Update cron
-
-```bash
-(crontab -l; echo "0 8 * * * /home/pi-inky-feed/refresh-inky.sh") | crontab -
-
-crontab -l
-```

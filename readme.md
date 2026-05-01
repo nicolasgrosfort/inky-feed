@@ -9,7 +9,9 @@ A new photo appears on an e-ink screen every hour.
 - [Create a refresh script](./docs/create-refresh-script.md) 
 - [Setup Raspberry Pi](./docs/setup-raspberry-pi.md)
 - [Upload a new image](./docs/upload-new-image.md)
-
+- [Setup Server](./docs/setup-server.md)
+- [Setup Cron](./docs/setup-cron.md)
+- 
 ## External link
 
 - [Pimoroni tutorial](https://learn.pimoroni.com/article/getting-started-with-inky-impression)
