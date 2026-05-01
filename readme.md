@@ -13,5 +13,6 @@ A new photo appears on an e-ink screen every hour.
 ## External link
 
 - [Pimoroni tutorial](https://learn.pimoroni.com/article/getting-started-with-inky-impression)
-- [Inky Feed dropbox](https://kdrive.infomaniak.com/app/collaborate/929618/7879be08-f7bd-4651-8580-b5cdf75b5a36)
 - [Infomaniak API documentation](https://developer.infomaniak.com/docs/api) 
+- [Inky Feed dropbox](https://kdrive.infomaniak.com/app/collaborate/929618/7879be08-f7bd-4651-8580-b5cdf75b5a36)
+- [Inky Feed images](https://lab.tekh.studio/inky-feed/)
