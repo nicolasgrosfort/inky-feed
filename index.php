@@ -123,6 +123,16 @@ if (!empty($imageIds)) {
     $imageData = $response->getBody()->getContents();
 
     $image = resizeCrop($imageData, 800, 480);
+    imagefilter($image, IMG_FILTER_BRIGHTNESS, 5);
+    imagefilter($image, IMG_FILTER_CONTRAST, -15);
+
+    $matrix = [
+        [-1, -1, -1],
+        [-1, 16, -1],
+        [-1, -1, -1],
+    ];
+
+    imageconvolution($image, $matrix, 8, 0);
 
     header('Content-Type: image/jpeg');
     imagejpeg($image, null, 90);
