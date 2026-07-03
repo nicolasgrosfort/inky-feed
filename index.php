@@ -5,6 +5,101 @@ use GuzzleHttp\Client;
 
 // Functions
 
+function nearestColor(array $palette, float $r, float $g, float $b): array
+{
+    $best = $palette[0];
+    $bestDist = PHP_FLOAT_MAX;
+
+    foreach ($palette as $color) {
+        [$pr, $pg, $pb] = $color;
+
+        $dr = $r - $pr;
+        $dg = $g - $pg;
+        $db = $b - $pb;
+
+        $dist = $dr * $dr + $dg * $dg + $db * $db;
+
+        if ($dist < $bestDist) {
+            $bestDist = $dist;
+            $best = $color;
+        }
+    }
+
+    return $best;
+}
+
+function clamp(float $value): int
+{
+    return max(0, min(255, (int) round($value)));
+}
+
+function ditherSpectra6(GdImage $img): GdImage
+{
+    $palette = [
+        [0, 0, 0],         // noir
+        [255, 255, 255],   // blanc
+        [255, 0, 0],       // rouge
+        [255, 255, 0],     // jaune
+        [0, 0, 255],       // bleu
+        [0, 255, 0],       // vert
+    ];
+
+    $w = imagesx($img);
+    $h = imagesy($img);
+
+    $pixels = [];
+
+    for ($y = 0; $y < $h; $y++) {
+        for ($x = 0; $x < $w; $x++) {
+            $rgb = imagecolorat($img, $x, $y);
+
+            $pixels[$y][$x] = [
+                ($rgb >> 16) & 0xFF,
+                ($rgb >> 8) & 0xFF,
+                $rgb & 0xFF,
+            ];
+        }
+    }
+
+    $out = imagecreatetruecolor($w, $h);
+
+    for ($y = 0; $y < $h; $y++) {
+        for ($x = 0; $x < $w; $x++) {
+            [$oldR, $oldG, $oldB] = $pixels[$y][$x];
+
+            [$newR, $newG, $newB] = nearestColor($palette, $oldR, $oldG, $oldB);
+
+            $color = imagecolorallocate($out, $newR, $newG, $newB);
+            imagesetpixel($out, $x, $y, $color);
+
+            $errR = $oldR - $newR;
+            $errG = $oldG - $newG;
+            $errB = $oldB - $newB;
+
+            foreach (
+                [
+                    [$x + 1, $y,     7 / 16],
+                    [$x - 1, $y + 1, 3 / 16],
+                    [$x,     $y + 1, 5 / 16],
+                    [$x + 1, $y + 1, 1 / 16],
+                ] as [$nx, $ny, $factor]
+            ) {
+                if ($nx >= 0 && $nx < $w && $ny >= 0 && $ny < $h) {
+                    $pixels[$ny][$nx][0] += $errR * $factor;
+                    $pixels[$ny][$nx][1] += $errG * $factor;
+                    $pixels[$ny][$nx][2] += $errB * $factor;
+
+                    $pixels[$ny][$nx][0] = clamp($pixels[$ny][$nx][0]);
+                    $pixels[$ny][$nx][1] = clamp($pixels[$ny][$nx][1]);
+                    $pixels[$ny][$nx][2] = clamp($pixels[$ny][$nx][2]);
+                }
+            }
+        }
+    }
+
+    return $out;
+}
+
 function fixExifOrientation(GdImage $image, string $imageData): GdImage
 {
     if (!function_exists('exif_read_data')) {
@@ -123,16 +218,11 @@ if (!empty($imageIds)) {
     $imageData = $response->getBody()->getContents();
 
     $image = resizeCrop($imageData, 800, 480);
+
     imagefilter($image, IMG_FILTER_BRIGHTNESS, 5);
-    imagefilter($image, IMG_FILTER_CONTRAST, -15);
+    imagefilter($image, IMG_FILTER_CONTRAST, -20);
 
-    $matrix = [
-        [-1, -1, -1],
-        [-1, 16, -1],
-        [-1, -1, -1],
-    ];
-
-    imageconvolution($image, $matrix, 8, 0);
+    $image = ditherSpectra6($image);
 
     header('Content-Type: image/jpeg');
     imagejpeg($image, null, 90);
