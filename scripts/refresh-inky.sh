@@ -1,18 +1,14 @@
 #!/bin/bash
 
-ENV_FILE="$(dirname "$0")/../.env"
-if [ -f "$ENV_FILE" ]; then
-  set -a
-  source "$ENV_FILE"
-  set +a
-fi
-
-SLEEP_TIME="${SLEEP_TIME:-300}"
-
 # Attendre que le réseau soit disponible
 until ping -c1 github.com >/dev/null 2>&1; do
     sleep 1
 done
+
+SLEEP_TIME=$(curl -s --max-time 5 https://lab.tekh.studio/inky-feed/sleep-time)
+if ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
+    SLEEP_TIME=300
+fi
 
 cd /home/pi-inky-feed/inky-feed || exit 1
 git pull
