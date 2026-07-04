@@ -17,7 +17,7 @@ cd ~/Pimoroni/inky/examples/spectra6
 ## Manual refresh
 
 ```bash
-bash /home/pi-inky-feed/refresh-inky.sh
+bash /home/pi-inky-feed/inky-feed/scripts/refresh-inky.sh
 ```
 
 ## Additional Wifi
