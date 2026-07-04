@@ -10,14 +10,20 @@ if ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
     SLEEP_TIME=300
 fi
 
+echo "Sleep time: $SLEEP_TIME seconds"
+
 cd /home/pi-inky-feed/inky-feed || exit 1
 git pull
 
 source /home/pi-inky-feed/.virtualenvs/pimoroni/bin/activate
 
+echo "Downloading new image..."
 wget -O /tmp/inky-image.jpg https://lab.tekh.studio/inky-feed/
+echo "Image downloaded."
+
 python /home/pi-inky-feed/Pimoroni/inky/examples/spectra6/image.py --file /tmp/inky-image.jpg
 
 sleep "$SLEEP_TIME"
 
+ echo "Shutting down..."
  sudo shutdown -h now
