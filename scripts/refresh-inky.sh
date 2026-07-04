@@ -5,7 +5,7 @@ until ping -c1 github.com >/dev/null 2>&1; do
     sleep 1
 done
 
-SLEEP_TIME=$(curl -s --max-time 5 https://lab.tekh.studio/inky-feed/sleep-time)
+SLEEP_TIME=$(curl -s --max-time 5 https://lab.tekh.studio/inky-feed/sleep-time/)
 if ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
     SLEEP_TIME=300
 fi
