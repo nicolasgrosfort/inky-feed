@@ -6,7 +6,9 @@ until ping -c1 github.com >/dev/null 2>&1; do
 done
 
 SLEEP_TIME=$(curl -s --max-time 5 https://lab.tekh.studio/inky-feed/sleep-time/)
-if ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
+
+if [[ "$SLEEP_TIME" == "NEVER" ]]; then
+elif ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
     SLEEP_TIME=300
 fi
 
@@ -21,8 +23,12 @@ echo "Image downloaded."
 
 python /home/pi-inky-feed/Pimoroni/inky/examples/spectra6/image.py --file /tmp/inky-image.jpg
 
-echo "Sleep for: $SLEEP_TIME seconds"
-sleep "$SLEEP_TIME"
+if [[ "$SLEEP_TIME" == "NEVER" ]]; then
+    echo "SLEEP_TIME is NEVER, staying awake indefinitely."
+else
+    echo "Sleep for: $SLEEP_TIME seconds"
+    sleep "$SLEEP_TIME"
 
-echo "Shutting down..."
-sudo shutdown -h now
+    echo "Shutting down..."
+    sudo shutdown -h now
+fi
