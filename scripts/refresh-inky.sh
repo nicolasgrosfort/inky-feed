@@ -8,6 +8,7 @@ done
 SLEEP_TIME=$(curl -s --max-time 5 https://lab.tekh.studio/inky-feed/sleep-time/)
 
 if [[ "$SLEEP_TIME" == "NEVER" ]]; then
+    : # Do nothing, keep SLEEP_TIME as NEVER
 elif ! [[ "$SLEEP_TIME" =~ ^[0-9]+$ ]]; then
     SLEEP_TIME=300
 fi
