@@ -4,7 +4,7 @@ They don't need a smartphone to see your photos.
 
 ## About
 
-An e-ink photo frame powered by a family drop box. Upload a photo from anywhere, and it shows up on their screen within the hour. No social media, no notifications, no noise.
+An e-ink photo frame powered by a family drop box. Upload a photo from anywhere, and it shows up on their screen within the minute. No social media, no notifications, no noise.
 
 ![Cover](./assets/cover.jpeg)
 
@@ -15,6 +15,30 @@ An e-ink photo frame powered by a family drop box. Upload a photo from anywhere,
 - [Upload a new image](./docs/upload-new-image.md)
 - [Setup Server](./docs/setup-server.md)
 - [Setup Cron](./docs/setup-cron.md)
+
+
+## Server
+
+### Run the server
+
+```bash
+composer install 
+php -S localhost:8000 
+```
+
+### Manual refresh
+
+Choose manually the next image to display on the e-ink screen, until the next automatic refresh.
+
+```bash
+# Production
+curl -X POST "https://lab.tekh.studio/inky-feed/manual/?secret=my-super-secret" \
+     -d "file_id=14353"
+
+# Local
+curl -X POST "http://localhost:8000/manual/?secret=my-super-secret" \
+     -d "file_id=14353"
+```
 
 ## External link
 
