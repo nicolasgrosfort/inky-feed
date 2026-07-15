@@ -16,7 +16,6 @@ An e-ink photo frame powered by a family drop box. Upload a photo from anywhere,
 - [Setup Server](./docs/setup-server.md)
 - [Setup Cron](./docs/setup-cron.md)
 
-
 ## Server
 
 ### Run the server
@@ -35,9 +34,19 @@ Choose manually the next image to display on the e-ink screen, until the next au
 curl -X POST "https://lab.tekh.studio/inky-feed/manual/?secret=my-super-secret" \
      -d "file_id=14353"
 
-# Local
+# Dev
 curl -X POST "http://localhost:8000/manual/?secret=my-super-secret" \
      -d "file_id=14353"
+```
+
+## Refresh script
+
+```bash
+# Production
+INKY_MANUAL_URL="https://lab.tekh.studio/inky-feed/manual/" ./check-manual.sh
+
+# Dev
+INKY_MANUAL_URL="http://localhost:8000/manual/" ./check-manual.sh
 ```
 
 ## External link
