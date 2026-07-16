@@ -8,14 +8,6 @@ An e-ink photo frame powered by a family drop box. Upload a photo from anywhere,
 
 ![Cover](./assets/cover.jpeg)
 
-## Documentation
-
-- [Create a refresh script](./docs/create-refresh-script.md) 
-- [Setup Raspberry Pi](./docs/setup-raspberry-pi.md)
-- [Upload a new image](./docs/upload-new-image.md)
-- [Setup Server](./docs/setup-server.md)
-- [Setup Cron](./docs/setup-cron.md)
-
 ## Server
 
 ### Run the server
@@ -25,7 +17,15 @@ composer install
 php -S localhost:8000 
 ```
 
-### Manual refresh
+## PI
+
+### Connexion
+
+```bash
+ssh pi-inky-feed@pi-inky-feed.local
+```
+
+### Choose next image to display
 
 Choose manually the next image to display on the e-ink screen, until the next automatic refresh.
 
@@ -39,7 +39,7 @@ curl -X POST "http://localhost:8000/manual/?secret=my-super-secret" \
      -d "file_id=14353"
 ```
 
-## Refresh script
+#### Run the refresh script
 
 ```bash
 # Production
@@ -48,6 +48,22 @@ INKY_MANUAL_URL="https://lab.tekh.studio/inky-feed/manual/" ./check-manual.sh
 # Dev
 INKY_MANUAL_URL="http://localhost:8000/manual/" ./check-manual.sh
 ```
+
+### Run the refresh script manually
+
+```bash
+bash /home/pi-inky-feed/inky-feed/scripts/refresh-inky.sh
+```
+
+## Documentation
+
+1. [Initial setup](./docs/initial-setup.md)
+
+- [Create a refresh script](./docs/create-refresh-script.md) 
+- [Setup Raspberry Pi](./docs/setup-raspberry-pi.md)
+- [Upload a new image](./docs/upload-new-image.md)
+- [Setup Server](./docs/setup-server.md)
+- [Setup Cron](./docs/setup-cron.md)
 
 ## External link
 
