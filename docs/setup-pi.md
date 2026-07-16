@@ -45,3 +45,17 @@ git clone https://github.com/nicolasgrosfort/inky-feed.git
 (crontab -l 2>/dev/null; echo "0 0 * * * /home/pi-inky-feed/scripts/git-pull.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
 crontab -l
 ```
+
+## Setup a new wi-Fi network
+
+```bash
+sudo nmcli connection add \
+  type wifi \
+  con-name "NAME" \
+  ifname wlan0 \
+  ssid "SSID" \
+  wifi-sec.key-mgmt wpa-psk \
+  wifi-sec.psk "PASSWORD" \
+  connection.autoconnect yes \
+  connection.autoconnect-priority -10
+```
