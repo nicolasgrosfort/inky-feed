@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-require 'functions.php';
+require 'libs/utils.php';
 
 use GuzzleHttp\Client;
 
