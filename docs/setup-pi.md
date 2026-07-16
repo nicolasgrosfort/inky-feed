@@ -40,8 +40,8 @@ git clone https://github.com/nicolasgrosfort/inky-feed.git
 ## Setup the cron job
 
 ```bash
-(crontab -l 2>/dev/null; echo "0 8,12,16,20 * * * /home/pi-inky-feed/refresh-inky.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
-(crontab -l 2>/dev/null; echo "* * * * * /home/pi-inky-feed/check-manual.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
-(crontab -l 2>/dev/null; echo "0 0 * * * /home/pi-inky-feed/git-pull.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "0 8,12,16,20 * * * /home/pi-inky-feed/scripts/refresh-inky.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "* * * * * /home/pi-inky-feed/scripts/check-manual.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "0 0 * * * /home/pi-inky-feed/scripts/git-pull.sh >> /home/pi-inky-feed/inky.log 2>&1") | crontab -
 crontab -l
 ```

@@ -49,10 +49,11 @@ INKY_MANUAL_URL="https://lab.tekh.studio/inky-feed/manual/" ./check-manual.sh
 INKY_MANUAL_URL="http://localhost:8000/manual/" ./check-manual.sh
 ```
 
-### Run the refresh script manually
+### Run the script manually
 
 ```bash
 bash /home/pi-inky-feed/inky-feed/scripts/refresh-inky.sh
+bash /home/pi-inky-feed/inky-feed/scripts/check-manual.sh
 ```
 
 ## Documentation
