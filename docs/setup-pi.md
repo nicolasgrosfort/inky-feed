@@ -22,6 +22,15 @@ cd inky
 sudo reboot
 ```
 
+### Test Pimoroni
+
+```bash
+source ~/.virtualenvs/pimoroni/bin/activate
+cd ~/Pimoroni/inky/examples/spectra6
+ls
+python hello_world.py
+```
+
 ## Clone the inky-feed repository
 
 ```bash

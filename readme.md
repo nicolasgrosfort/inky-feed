@@ -57,13 +57,9 @@ bash /home/pi-inky-feed/inky-feed/scripts/refresh-inky.sh
 
 ## Documentation
 
-1. [Initial setup](./docs/initial-setup.md)
-
-- [Create a refresh script](./docs/create-refresh-script.md) 
-- [Setup Raspberry Pi](./docs/setup-raspberry-pi.md)
-- [Upload a new image](./docs/upload-new-image.md)
-- [Setup Server](./docs/setup-server.md)
-- [Setup Cron](./docs/setup-cron.md)
+1. [Setup PI](./docs/initial-setup.md)
+2. [Setup Server](./docs/setup-server.md)
+3. [Upload a new image](./docs/upload-new-image.md)
 
 ## External link
 

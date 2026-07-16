@@ -6,7 +6,7 @@
 
 ## Note
 
-Portrait images must be rotated 90 degrees.
+All images will be displayed in portrait mode. Landscape formats will then be cropped
 
 *Like that* :
 

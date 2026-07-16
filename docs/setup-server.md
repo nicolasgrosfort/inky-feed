@@ -15,5 +15,5 @@ cp .env.example .env
 ## Run locally
 
 ```bash
-php -S localhost:8000 index.php
+php -S localhost:8000 
 ```
