@@ -25,8 +25,9 @@ bash /home/pi-inky-feed/inky-feed/scripts/refresh-inky.sh
 ```bash
 sudo nmcli connection add \
   type wifi \
-  ssid "NomDuWifi" \
+  con-name "LABEL" \
+  ssid "SSID" \
   wifi-sec.key-mgmt wpa-psk \
-  wifi-sec.psk "MotDePasse" \
+  wifi-sec.psk "PASSWORD" \
   connection.autoconnect yes
 ```
